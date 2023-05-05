@@ -55,9 +55,9 @@
             // 
             this.cmbKriterijum.FormattingEnabled = true;
             this.cmbKriterijum.Items.AddRange(new object[] {
-            "Broj Vozacke Dozvole",
-            "Ime",
-            "Prezime"});
+            "Broju Vozacke Dozvole",
+            "Imenu",
+            "Prezimenu"});
             this.cmbKriterijum.Location = new System.Drawing.Point(361, 128);
             this.cmbKriterijum.Name = "cmbKriterijum";
             this.cmbKriterijum.Size = new System.Drawing.Size(159, 23);
@@ -106,7 +106,7 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(159, 23);
             this.button4.TabIndex = 7;
-            this.button4.Text = "Sortiraj";
+            this.button4.Text = "Sortiraj po";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.btnSortirajVozace);
             // 
@@ -129,7 +129,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(524, 441);
             this.Controls.Add(this.lblTacnoVreme);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
