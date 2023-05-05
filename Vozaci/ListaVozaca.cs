@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Vozaci.Delegati;
 
 namespace Vozaci
 {
     public class ListaVozaca
     {
-        public delegate void SortDelegate(List<Vozac> vozaci);
-        public SortDelegate SortListDelegate { get; set; }
         private List<Vozac> _listaVozaca;
 
         private static ListaVozaca _instance = null;
-        public static ListaVozaca Instancez {
+        public static ListaVozaca Instance {
             get {
                 if(_instance==null)
                    _instance = new ListaVozaca();
@@ -23,28 +22,28 @@ namespace Vozaci
         public ListaVozaca() {
             _listaVozaca= new List<Vozac>();
         }
-        internal List<Vozac> GetVozaci()
+        public List<Vozac> GetVozaci()
         {
             return _listaVozaca;    
         }
-        internal void AddVozac(Vozac vozac)
+        public void AddVozac(Vozac vozac)
         {
             _listaVozaca.Insert(0,vozac);
         }
 
-        internal void RemoveVozac(Vozac vozac)
+        public void RemoveVozac(Vozac vozac)
         {
             _listaVozaca.Remove(vozac);
         }
 
-        internal void Clear()
+        public void Clear()
         {
             _listaVozaca.Clear();
         }
 
-        internal void SortVozaci(SortDelegate SortListDelegate)
+        public void SortVozaci(Kriterijum kriterijum)
         {
-
+            _listaVozaca.Sort((vozac1, vozac2) => kriterijum(vozac1).CompareTo(kriterijum(vozac2)));
         }
 
 
