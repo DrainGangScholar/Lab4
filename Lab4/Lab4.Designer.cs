@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dataListaVozaca = new System.Windows.Forms.DataGridView();
             this.Ime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Prezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -38,6 +39,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.tmrTacnoVreme = new System.Windows.Forms.Timer(this.components);
+            this.lblTacnoVreme = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataListaVozaca)).BeginInit();
             this.SuspendLayout();
             // 
@@ -128,11 +131,27 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.btnSortirajVozace);
             // 
+            // tmrTacnoVreme
+            // 
+            this.tmrTacnoVreme.Interval = 1000;
+            this.tmrTacnoVreme.Tick += new System.EventHandler(this.tmrTacnoVreme_Tick);
+            // 
+            // lblTacnoVreme
+            // 
+            this.lblTacnoVreme.AutoSize = true;
+            this.lblTacnoVreme.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblTacnoVreme.Location = new System.Drawing.Point(12, 30);
+            this.lblTacnoVreme.Name = "lblTacnoVreme";
+            this.lblTacnoVreme.Size = new System.Drawing.Size(40, 15);
+            this.lblTacnoVreme.TabIndex = 8;
+            this.lblTacnoVreme.Text = "label2";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblTacnoVreme);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -160,5 +179,7 @@
         private Button button2;
         private Button button3;
         private Button button4;
+        private System.Windows.Forms.Timer tmrTacnoVreme;
+        private Label lblTacnoVreme;
     }
 }
