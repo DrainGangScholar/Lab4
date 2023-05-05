@@ -11,17 +11,19 @@ namespace Lab4
         {
             InitializeComponent();
             tmrTacnoVreme.Start();
-            dataListaVozaca.DataSource = ListaVozaca.Instance.GetVozaci();
+            dataListaVozaca.DataSource=ListaVozaca.Instance.Vozaci.DodajVoza;
+            
         }
         private void btnObrisiVozaca(object sender, EventArgs e)
         {
-            Vozac vozac=(Vozac)cmbKriterijum.SelectedItem;
+            Vozac vozac= (Vozac)dataListaVozaca.SelectedRows[0].DataBoundItem;
             ListaVozaca.Instance.RemoveVozac(vozac);
+            dataListaVozaca.Refresh();
         }
 
         private void btnSortirajVozace(object sender, EventArgs e)
         {
-            if(ListaVozaca.Instance.GetVozaci().Count==0) { return; }
+            if(ListaVozaca.Instance.Vozaci.Count==0) { return; }
             Kriterijum? kriterijum = null;
             switch (cmbKriterijum.SelectedIndex)
             {
@@ -38,7 +40,8 @@ namespace Lab4
                     return;
             }
             ListaVozaca.Instance.SortVozaci(kriterijum);
-            dataListaVozaca.DataSource = ListaVozaca.Instance.GetVozaci();
+            dataListaVozaca.DataSource = ListaVozaca.Instance.Vozaci;
+            dataListaVozaca.Refresh();
             MessageBox.Show($"Lista vozaca je uspešno sortirana {cmbKriterijum.SelectedItem}.", "Sortiranje liste", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 

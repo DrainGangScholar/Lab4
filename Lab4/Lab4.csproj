@@ -12,4 +12,8 @@
     <ProjectReference Include="..\Vozaci\Vozaci.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
 </Project>

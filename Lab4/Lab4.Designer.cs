@@ -30,9 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataListaVozaca = new System.Windows.Forms.DataGridView();
-            this.Ime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Prezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BrVoz = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmbKriterijum = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -47,30 +44,12 @@
             // dataListaVozaca
             // 
             this.dataListaVozaca.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataListaVozaca.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Ime,
-            this.Prezime,
-            this.BrVoz});
             this.dataListaVozaca.Location = new System.Drawing.Point(12, 90);
             this.dataListaVozaca.Name = "dataListaVozaca";
             this.dataListaVozaca.RowTemplate.Height = 25;
+            this.dataListaVozaca.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataListaVozaca.Size = new System.Drawing.Size(343, 282);
             this.dataListaVozaca.TabIndex = 0;
-            // 
-            // Ime
-            // 
-            this.Ime.HeaderText = "Ime";
-            this.Ime.Name = "Ime";
-            // 
-            // Prezime
-            // 
-            this.Prezime.HeaderText = "Prezime";
-            this.Prezime.Name = "Prezime";
-            // 
-            // BrVoz
-            // 
-            this.BrVoz.HeaderText = "Br. Vozacke Dozvole";
-            this.BrVoz.Name = "BrVoz";
             // 
             // cmbKriterijum
             // 
@@ -170,9 +149,6 @@
         #endregion
 
         private DataGridView dataListaVozaca;
-        private DataGridViewTextBoxColumn Ime;
-        private DataGridViewTextBoxColumn Prezime;
-        private DataGridViewTextBoxColumn BrVoz;
         private ComboBox cmbKriterijum;
         private Label label1;
         private Button button1;

@@ -8,15 +8,19 @@ namespace Vozaci
 {
     public class Vozac
     {
-        private string Ime;
-        private string Prezime;
-        private string BrVozacke;
+        public string Ime { get; set; }
+        public string Prezime { get; set; }
+        public string BrVozacke { get; set; }
 
         public Vozac(string ime, string prezime, string brVozacke)
         {
             Ime = ime;
             Prezime = prezime;
             BrVozacke = brVozacke;
+        }
+
+        public Vozac()
+        {
         }
 
         public string GetIme() { return Ime; }

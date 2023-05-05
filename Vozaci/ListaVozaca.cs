@@ -22,9 +22,9 @@ namespace Vozaci
         public ListaVozaca() {
             _listaVozaca= new List<Vozac>();
         }
-        public List<Vozac> GetVozaci()
+        public List<Vozac> Vozaci
         {
-            return _listaVozaca;    
+            get { return _listaVozaca; }
         }
         public void AddVozac(Vozac vozac)
         {
