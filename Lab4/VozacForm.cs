@@ -16,6 +16,7 @@ namespace Lab4
         public ListaVozaca ListaVozaca;
         public VozacBuilder vozacBuilder = VozacBuilder.Instance();
         Vozac vozac;
+        public string slikaPath;
         public VozacForm(Vozac vozac)
         {
             InitializeComponent();
@@ -92,7 +93,6 @@ namespace Lab4
                 pol = 'Z';
             else
                 pol = 'M';
-            string imagePath = this.vozac.ImagePath;
 
             if (String.IsNullOrWhiteSpace(ime))
             {
@@ -114,7 +114,7 @@ namespace Lab4
                 MessageBox.Show("Morate uneti broj vozačke dozvole.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (String.IsNullOrWhiteSpace(imagePath))
+            if (String.IsNullOrWhiteSpace(slikaPath))
             {
                 MessageBox.Show("Niste izabrali sliku.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -130,7 +130,7 @@ namespace Lab4
                 vozac.MestoIzdavanja= mestoIzdavanja;
                 vozac.BrVozacke=brVozacke;
                 vozac.Pol = pol;
-                vozac.ImagePath = imagePath;
+                vozac.ImagePath = slikaPath;
                 this.Close();
             }
             else {
@@ -143,7 +143,7 @@ namespace Lab4
                     .SetMestoIzdavanja(mestoIzdavanja)
                     .SetBrVozacke(brVozacke)
                     .SetPol(pol)
-                    .SetImagePath(imagePath)
+                    .SetImagePath(slikaPath)
                 .Build();
             ListaVozaca.Instance.AddVozac(lol);
             }
@@ -200,11 +200,11 @@ namespace Lab4
             openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png, *.bmp)|*.jpg;*.jpeg;*.png;*.bmp|All files (*.*)|*.*";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                string imagePath = openFileDialog.FileName;
+                string imgPath = openFileDialog.FileName;
                 // Load the image from file and set it as the Image property of the PictureBox control
-                picSlika.Image = Image.FromFile(imagePath);
+                picSlika.Image = Image.FromFile(imgPath);
                 // Save the path of the selected image file to the Vozac object
-                this.vozac.ImagePath = imagePath;
+                    slikaPath = imgPath;
             }
         }
     }
