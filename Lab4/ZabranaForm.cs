@@ -15,13 +15,11 @@ namespace Lab4
     public partial class ZabranaForm : Form
     {
         public VozacBuilder vozacBuilder=VozacBuilder.Instance();
-
-        public ZabranaForm()
+        public ZabranaForm(List<Kategorija> kategorije)
         {
             InitializeComponent();
             cmbKategorije.Items.Clear();
-            var lista = vozacBuilder.GetKategorije();
-            foreach (var kategorija in lista)
+            foreach (var kategorija in kategorije)
             {
                 cmbKategorije.Items.Add(kategorija.Ime);
             }

@@ -24,6 +24,25 @@ namespace Lab4
                 datPolozeneKategorije.DataSource = vozac.PolozeneKategorije;
                 datZabrane.DataSource = vozac.Zabrane;
                 this.vozac = vozac;
+                txtIme.Text = this.vozac.Ime;
+                txtPrezime.Text = this.vozac.Prezime;
+                dtpDatumRodjenja.Value = this.vozac.DatumRodjenja;
+                dtpVozackaOd.Value = this.vozac.DatumOd;
+                dtpVazenjeDo.Value = this.vozac.DatumDo;
+                txtMesto.Text = this.vozac.MestoIzdavanja;
+                txtBrVozacke.Text = this.vozac.BrVozacke;
+                if (this.vozac.Pol == 'M')
+                {
+                    cmbPol.SelectedIndex = 0;
+                }
+                else if (this.vozac.Pol == 'Z')
+                {
+                    cmbPol.SelectedIndex = 1;
+                }
+                else
+                {
+                    cmbPol.SelectedIndex = -1;
+                }
             }
         }
         public VozacForm()
@@ -42,7 +61,7 @@ namespace Lab4
         private void btnDodajZabranu_Click(object sender, EventArgs e)
         {
             if (vozac!=null) {
-                ZabranaForm zabranaForm = new ZabranaForm();
+                ZabranaForm zabranaForm = new ZabranaForm(vozac.PolozeneKategorije);
                 zabranaForm.FormClosing += (s, args) => this.Visible = true;
                 zabranaForm.Show();
                 this.Hide();
@@ -116,6 +135,30 @@ namespace Lab4
                 e.Handled = true;
                 MessageBox.Show("Zabranjen je unos karaktera koji nisu slova.");
             }
+        }
+
+        private void btnObrisiZabranu_Click(object sender, EventArgs e)
+        {
+            if (datZabrane.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = datZabrane.SelectedRows[0];
+                Zabrana selectedVozac = (Zabrana)selectedRow.DataBoundItem;
+                int selectedIndex = datZabrane.SelectedRows[0].Index;
+                datZabrane.Rows.RemoveAt(selectedIndex);
+            }
+
+        }
+
+        private void btnObrisiKategoriju_Click(object sender, EventArgs e)
+        {
+            if (datPolozeneKategorije.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = datPolozeneKategorije.SelectedRows[0];
+                Kategorija selectedVozac = (Kategorija)selectedRow.DataBoundItem;
+                int selectedIndex = datPolozeneKategorije.SelectedRows[0].Index;
+                datPolozeneKategorije.Rows.RemoveAt(selectedIndex);
+            }
+
         }
     }
 }

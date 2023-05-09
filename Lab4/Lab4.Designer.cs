@@ -33,7 +33,7 @@
             this.cmbKriterijum = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnDodajVozaca = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnIzmeni = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.tmrTacnoVreme = new System.Windows.Forms.Timer(this.components);
@@ -82,14 +82,15 @@
             this.btnDodajVozaca.UseVisualStyleBackColor = true;
             this.btnDodajVozaca.Click += new System.EventHandler(this.btnDodajVozaca_Click);
             // 
-            // button2
+            // btnIzmeni
             // 
-            this.button2.Location = new System.Drawing.Point(196, 378);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(159, 60);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Izmeni Vozaca";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnIzmeni.Location = new System.Drawing.Point(196, 378);
+            this.btnIzmeni.Name = "btnIzmeni";
+            this.btnIzmeni.Size = new System.Drawing.Size(159, 60);
+            this.btnIzmeni.TabIndex = 5;
+            this.btnIzmeni.Text = "Izmeni Vozaca";
+            this.btnIzmeni.UseVisualStyleBackColor = true;
+            this.btnIzmeni.Click += new System.EventHandler(this.btnIzmeni_Click);
             // 
             // button3
             // 
@@ -134,7 +135,7 @@
             this.Controls.Add(this.lblTacnoVreme);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnIzmeni);
             this.Controls.Add(this.btnDodajVozaca);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbKriterijum);
@@ -153,7 +154,7 @@
         private ComboBox cmbKriterijum;
         private Label label1;
         private Button btnDodajVozaca;
-        private Button button2;
+        private Button btnIzmeni;
         private Button button3;
         private Button button4;
         private System.Windows.Forms.Timer tmrTacnoVreme;

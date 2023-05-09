@@ -234,6 +234,7 @@
             this.btnObrisiKategoriju.TabIndex = 20;
             this.btnObrisiKategoriju.Text = "Obrisi kategoriju";
             this.btnObrisiKategoriju.UseVisualStyleBackColor = true;
+            this.btnObrisiKategoriju.Click += new System.EventHandler(this.btnObrisiKategoriju_Click);
             // 
             // Kategorija
             // 
@@ -262,6 +263,7 @@
             this.btnObrisiZabranu.TabIndex = 24;
             this.btnObrisiZabranu.Text = "Obrisi zabranu";
             this.btnObrisiZabranu.UseVisualStyleBackColor = true;
+            this.btnObrisiZabranu.Click += new System.EventHandler(this.btnObrisiZabranu_Click);
             // 
             // btnDodajVozaca
             // 
