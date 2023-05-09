@@ -45,7 +45,7 @@ namespace Lab4
             dataListaVozaca.DataSource = null;
             dataListaVozaca.DataSource = ListaVozaca.Instance.Vozaci;
             dataListaVozaca.Refresh();
-            MessageBox.Show($"Izbrisani Vozac: {vozac.Ime} {vozac.Prezime}, {vozac.BrVozacke}", "Uspešno izbrisano", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            MessageBox.Show($"Izbrisani Vozac: {vozac.Ime} {vozac.Prezime}, {vozac.BrVozacke}", "Uspešno izbrisano", MessageBoxButtons.OK);
         }
 
         private void btnSortirajVozace(object sender, EventArgs e)
@@ -75,6 +75,13 @@ namespace Lab4
         private void tmrTacnoVreme_Tick(object sender, EventArgs e)
         {
             lblTacnoVreme.Text = DateTime.Now.ToString("HH:mm:ss dd.MM.yyyy.");
+        }
+
+        private void btnDodajVozaca_Click(object sender, EventArgs e)
+        {
+            VozacForm vozacForm = new VozacForm();
+            vozacForm.ShowDialog();
+            this.Hide();
         }
     }
 }
