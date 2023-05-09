@@ -11,22 +11,22 @@ namespace Lab4
         {
             InitializeComponent();
             tmrTacnoVreme.Start();
-            Vozac vozac1 = new Vozac("Mary", "Johnson", "5553335", new DateTime(1980, 1, 1), new DateTime(2020, 1, 1), new DateTime(2030, 1, 1), "New York",'Z', new List<Kategorija>(), new List<Zabrana>());
+            Vozac vozac1 = new Vozac("Mary", "Johnson", "5553335", new DateTime(1980, 1, 1), new DateTime(2020, 1, 1), new DateTime(2030, 1, 1), "New York",'Z', new List<Kategorija>(), new List<Zabrana>(),"");
             vozac1.AddKategorija(new Kategorija("A", new DateTime(2020, 1, 1), new DateTime(2030, 1, 1)));
             vozac1.AddKategorija(new Kategorija("B", new DateTime(2022, 1, 1), new DateTime(2032, 1, 1)));
             vozac1.AddKategorija(new Kategorija("C", new DateTime(2024, 1, 1), new DateTime(2034, 1, 1)));
 
-            Vozac vozac2 = new Vozac("James", "Williams", "5553336", new DateTime(1982, 2, 2), new DateTime(2019, 1, 1), new DateTime(2029, 1, 1), "Los Angeles", 'M', new List<Kategorija>(), new List<Zabrana>());
+            Vozac vozac2 = new Vozac("James", "Williams", "5553336", new DateTime(1982, 2, 2), new DateTime(2019, 1, 1), new DateTime(2029, 1, 1), "Los Angeles", 'M', new List<Kategorija>(), new List<Zabrana>(),"");
             vozac2.AddKategorija(new Kategorija("A", new DateTime(2019, 1, 1), new DateTime(2029, 1, 1)));
             vozac2.AddKategorija(new Kategorija("B", new DateTime(2021, 1, 1), new DateTime(2031, 1, 1)));
             vozac2.AddKategorija(new Kategorija("C", new DateTime(2023, 1, 1), new DateTime(2033, 1, 1)));
 
-            Vozac vozac3 = new Vozac("Patricia", "Brown", "5553337", new DateTime(1984, 3, 3), new DateTime(2018, 1, 1), new DateTime(2028, 1, 1), "Chicago", 'Z', new List<Kategorija>(), new List<Zabrana>() );
+            Vozac vozac3 = new Vozac("Patricia", "Brown", "5553337", new DateTime(1984, 3, 3), new DateTime(2018, 1, 1), new DateTime(2028, 1, 1), "Chicago", 'Z', new List<Kategorija>(), new List<Zabrana>() , "");
             vozac3.AddKategorija(new Kategorija("A", new DateTime(2018, 1, 1), new DateTime(2028, 1, 1)));
             vozac3.AddKategorija(new Kategorija("B", new DateTime(2020, 1, 1), new DateTime(2030, 1, 1)));
             vozac3.AddKategorija(new Kategorija("C", new DateTime(2022, 1, 1), new DateTime(2032, 1, 1)));
 
-            Vozac vozac4 = new Vozac("Michael", "Jones", "5553338", new DateTime(1986, 4, 4), new DateTime(2017, 1, 1), new DateTime(2027, 1, 1), "Houston", 'M', new List<Kategorija>(), new List<Zabrana>());
+            Vozac vozac4 = new Vozac("Michael", "Jones", "5553338", new DateTime(1986, 4, 4), new DateTime(2017, 1, 1), new DateTime(2027, 1, 1), "Houston", 'M', new List<Kategorija>(), new List<Zabrana>(), "");
             vozac4.AddKategorija(new Kategorija("A", new DateTime(2017, 1, 1), new DateTime(2027, 1, 1)));
             vozac4.AddKategorija(new Kategorija("B", new DateTime(2019, 1, 1), new DateTime(2029, 1, 1)));
 
@@ -91,7 +91,11 @@ namespace Lab4
             DataGridViewRow selectedRow = dataListaVozaca.SelectedRows[0];
             Vozac selectedVozac = (Vozac)selectedRow.DataBoundItem;
             VozacForm vozacForm = new VozacForm(selectedVozac);
-            vozacForm.FormClosing += (s, args) => this.Visible = true;
+            vozacForm.FormClosing += (s, args) => {
+                dataListaVozaca.DataSource = null;
+                dataListaVozaca.DataSource = ListaVozaca.Instance.Vozaci;
+                this.Visible = true;
+            };
             vozacForm.Show();
             this.Hide();
 

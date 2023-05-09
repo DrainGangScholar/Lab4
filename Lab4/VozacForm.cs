@@ -31,6 +31,8 @@ namespace Lab4
                 dtpVazenjeDo.Value = this.vozac.DatumDo;
                 txtMesto.Text = this.vozac.MestoIzdavanja;
                 txtBrVozacke.Text = this.vozac.BrVozacke;
+                cmbPol.Items.Add('M');
+                cmbPol.Items.Add('Z');
                 if (this.vozac.Pol == 'M')
                 {
                     cmbPol.SelectedIndex = 0;
@@ -43,11 +45,14 @@ namespace Lab4
                 {
                     cmbPol.SelectedIndex = -1;
                 }
+                picSlika.ImageLocation = this.vozac.ImagePath;
             }
         }
         public VozacForm()
         {
             InitializeComponent();
+            cmbPol.Items.Add('M');
+            cmbPol.Items.Add('Z');
         }
 
         private void btnDodajKategoriju_Click(object sender, EventArgs e)
@@ -81,7 +86,13 @@ namespace Lab4
             var datumDo = dtpVazenjeDo.Value;
             string mestoIzdavanja = txtMesto.Text;
             string brVozacke = txtBrVozacke.Text;
-            char pol = (char)cmbPol.SelectedText[0];
+            string selectedPol = cmbPol.SelectedItem.ToString();
+            char pol;
+            if (selectedPol == "Z")
+                pol = 'Z';
+            else
+                pol = 'M';
+            string imagePath = this.vozac.ImagePath;
 
             if (String.IsNullOrWhiteSpace(ime))
             {
@@ -103,20 +114,40 @@ namespace Lab4
                 MessageBox.Show("Morate uneti broj vozačke dozvole.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-            var lol = Vozac.Builder()
-                .SetIme(ime)
-                .SetPrezime(prezime)
-                .SetDatumRodjenja(datumRodjenja)
-                .SetDatumOd(datumOd)
-                .SetDatumDo(datumDo)
-                .SetMestoIzdavanja(mestoIzdavanja)
-                .SetBrVozacke(brVozacke)
-                .SetPol(pol)
+            if (String.IsNullOrWhiteSpace(imagePath))
+            {
+                MessageBox.Show("Niste izabrali sliku.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            var vozac = ListaVozaca.Instance.Vozaci.Where(p =>p.Ime==ime && p.Prezime==prezime || p.DatumRodjenja==datumRodjenja && p.BrVozacke==brVozacke).FirstOrDefault();
+            if (vozac != null)
+            {
+                vozac.Ime = ime;
+                vozac.Prezime = prezime;
+                vozac.DatumRodjenja = datumRodjenja;
+                vozac.DatumOd = datumOd;
+                vozac.DatumDo=datumDo;
+                vozac.MestoIzdavanja= mestoIzdavanja;
+                vozac.BrVozacke=brVozacke;
+                vozac.Pol = pol;
+                vozac.ImagePath = imagePath;
+                this.Close();
+            }
+            else {
+                var lol = Vozac.Builder()
+                    .SetIme(ime)
+                    .SetPrezime(prezime)
+                    .SetDatumRodjenja(datumRodjenja)
+                    .SetDatumOd(datumOd)
+                    .SetDatumDo(datumDo)
+                    .SetMestoIzdavanja(mestoIzdavanja)
+                    .SetBrVozacke(brVozacke)
+                    .SetPol(pol)
+                    .SetImagePath(imagePath)
                 .Build();
             ListaVozaca.Instance.AddVozac(lol);
+            }
             this.Close();
-
         }
 
         private void txtIme_KeyPress(object sender, KeyPressEventArgs e)
@@ -142,9 +173,10 @@ namespace Lab4
             if (datZabrane.SelectedRows.Count > 0)
             {
                 DataGridViewRow selectedRow = datZabrane.SelectedRows[0];
-                Zabrana selectedVozac = (Zabrana)selectedRow.DataBoundItem;
-                int selectedIndex = datZabrane.SelectedRows[0].Index;
-                datZabrane.Rows.RemoveAt(selectedIndex);
+                Zabrana selectedZabrana = (Zabrana)selectedRow.DataBoundItem;
+                vozac.Zabrane.Remove(selectedZabrana);
+                datZabrane.DataSource = null;
+                datZabrane.DataSource = vozac.Zabrane;
             }
 
         }
@@ -154,11 +186,26 @@ namespace Lab4
             if (datPolozeneKategorije.SelectedRows.Count > 0)
             {
                 DataGridViewRow selectedRow = datPolozeneKategorije.SelectedRows[0];
-                Kategorija selectedVozac = (Kategorija)selectedRow.DataBoundItem;
-                int selectedIndex = datPolozeneKategorije.SelectedRows[0].Index;
-                datPolozeneKategorije.Rows.RemoveAt(selectedIndex);
+                Kategorija selectedKategorija = (Kategorija)selectedRow.DataBoundItem;
+                vozac.PolozeneKategorije.Remove(selectedKategorija);
+                datPolozeneKategorije.DataSource = null;
+                datPolozeneKategorije.DataSource = vozac.PolozeneKategorije;
             }
 
+        }
+
+        private void btnDodajSliku_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png, *.bmp)|*.jpg;*.jpeg;*.png;*.bmp|All files (*.*)|*.*";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string imagePath = openFileDialog.FileName;
+                // Load the image from file and set it as the Image property of the PictureBox control
+                picSlika.Image = Image.FromFile(imagePath);
+                // Save the path of the selected image file to the Vozac object
+                this.vozac.ImagePath = imagePath;
+            }
         }
     }
 }

@@ -14,6 +14,7 @@
         public char Pol;
         private List<Kategorija> Kategorije = new List<Kategorija>();
         private List<Zabrana> Zabrane = new List<Zabrana>();
+        public string ImagePath;
 
         public VozacBuilder()
         {
@@ -74,6 +75,11 @@
             Pol = pol;
             return this;
         }
+        public VozacBuilder SetImagePath(string imagePath)
+        {
+            ImagePath = imagePath;
+            return this;
+        }
 
         public VozacBuilder AddKategorija(Kategorija kategorija)
         {
@@ -86,15 +92,13 @@
             Zabrane.Add(zabrana);
             return this;
         }
-
         public List<Kategorija> GetKategorije()
         {
             return Kategorije;
         }
-
         public Vozac Build()
         {
-            return new Vozac(Ime, Prezime, BrVozacke, DatumRodjenja,DatumOd,DatumDo, MestoIzdavanja, Pol, Kategorije, Zabrane);
+            return new Vozac(Ime, Prezime, BrVozacke, DatumRodjenja,DatumOd,DatumDo, MestoIzdavanja, Pol, Kategorije, Zabrane,ImagePath);
         }
     }
 }

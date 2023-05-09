@@ -17,10 +17,11 @@ namespace Vozaci
         public DateTime DatumDo { get; set; }
         public string MestoIzdavanja { get; set; }
         public char Pol { get; set; }
+        public string ImagePath { get; set; }
         public List<Kategorija> PolozeneKategorije { get; set; } = new();
         public List<Zabrana> Zabrane { get; set; } = new();
 
-        public Vozac(string ime, string prezime, string brVozacke, DateTime datumRodjenja,DateTime datumOd,DateTime datumDo, string mestoIzdavanja, char pol, List<Kategorija> polozeneKategorije, List<Zabrana> zabrane)
+        public Vozac(string ime, string prezime, string brVozacke, DateTime datumRodjenja,DateTime datumOd,DateTime datumDo, string mestoIzdavanja, char pol, List<Kategorija> polozeneKategorije, List<Zabrana> zabrane,string imagePath)
         {
             Ime = ime;
             Prezime = prezime;
@@ -32,6 +33,7 @@ namespace Vozaci
             Pol = pol;
             PolozeneKategorije = polozeneKategorije;
             Zabrane = zabrane;
+            ImagePath = imagePath;
         }
 
         public Vozac()

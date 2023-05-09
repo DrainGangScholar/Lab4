@@ -198,6 +198,7 @@
             this.btnDodajSliku.TabIndex = 15;
             this.btnDodajSliku.Text = "Dodaj sliku";
             this.btnDodajSliku.UseVisualStyleBackColor = true;
+            this.btnDodajSliku.Click += new System.EventHandler(this.btnDodajSliku_Click);
             // 
             // picSlika
             // 
@@ -306,9 +307,6 @@
             // cmbPol
             // 
             this.cmbPol.FormattingEnabled = true;
-            this.cmbPol.Items.AddRange(new object[] {
-            "M",
-            "Z"});
             this.cmbPol.Location = new System.Drawing.Point(131, 208);
             this.cmbPol.Name = "cmbPol";
             this.cmbPol.Size = new System.Drawing.Size(100, 23);
