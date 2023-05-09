@@ -6,9 +6,16 @@ using System.Threading.Tasks;
 
 namespace Vozaci
 {
-    internal class Kategorija
+    public class Kategorija
     {
-        public string Kategorija { get; set; }
-        public Kategorija() { }
+        public string Ime { get; set; }
+        public DateTime VaziOd { get; set; }
+        public DateTime VaziDo { get; set; }
+        public Kategorija(string ime, DateTime vaziOd, DateTime vaziDo)
+        {
+            Ime = ime;
+            VaziOd = vaziOd;
+            VaziDo = vaziDo;
+        }
     }
 }

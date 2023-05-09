@@ -2,26 +2,33 @@
 {
     public class VozacBuilder
     {
+        private static VozacBuilder instance = null;
+
         private string Ime;
         private string Prezime;
         private string BrVozacke;
         public DateTime DatumRodjenja;
+        public DateTime DatumOd;
+        public DateTime DatumDo;
         public string MestoIzdavanja;
         public char Pol;
         private List<Kategorija> Kategorije = new List<Kategorija>();
         private List<Zabrana> Zabrane = new List<Zabrana>();
 
-        public VozacBuilder(string ime, string prezime, string brVozacke,DateTime datumRodjenja, string mestoIzdavanja, char pol, List<Kategorija> kategorije,List<Zabrana> zabrane)
+        public VozacBuilder()
         {
-            Ime = ime;
-            Prezime = prezime;
-            BrVozacke = brVozacke;
-            DatumRodjenja = datumRodjenja;
-            MestoIzdavanja = mestoIzdavanja;
-            Pol = pol;
-            Kategorije = kategorije;
-            Zabrane = zabrane;
+
         }
+
+        public static VozacBuilder Instance()
+        {
+            if (instance == null)
+            {
+                instance = new VozacBuilder();
+            }
+            return instance;
+        }
+
         public VozacBuilder SetIme(string ime)
         {
             Ime = ime;
@@ -43,6 +50,16 @@
         public VozacBuilder SetDatumRodjenja(DateTime datumRodjenja)
         {
             DatumRodjenja = datumRodjenja;
+            return this;
+        }
+        public VozacBuilder SetDatumOd(DateTime datumOd)
+        {
+            DatumOd=datumOd;
+            return this;
+        }
+        public VozacBuilder SetDatumDo(DateTime datumDo)
+        {
+            DatumDo=datumDo;
             return this;
         }
 
@@ -70,9 +87,14 @@
             return this;
         }
 
+        public List<Kategorija> GetKategorije()
+        {
+            return Kategorije;
+        }
+
         public Vozac Build()
         {
-            return new Vozac(Ime,Prezime,BrVozacke,DatumRodjenja,MestoIzdavanja,Pol,Kategorije,Zabrane);
+            return new Vozac(Ime, Prezime, BrVozacke, DatumRodjenja,DatumOd,DatumDo, MestoIzdavanja, Pol, Kategorije, Zabrane);
         }
     }
 }

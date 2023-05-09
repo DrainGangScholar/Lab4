@@ -43,18 +43,22 @@
             this.dtpVazenjeDo = new System.Windows.Forms.DateTimePicker();
             this.txtBrVozacke = new System.Windows.Forms.TextBox();
             this.txtMesto = new System.Windows.Forms.TextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.btnDodajSliku = new System.Windows.Forms.Button();
             this.picSlika = new System.Windows.Forms.PictureBox();
-            this.lstKategorija = new System.Windows.Forms.ListBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btnDodajKategoriju = new System.Windows.Forms.Button();
             this.btnObrisiKategoriju = new System.Windows.Forms.Button();
             this.Kategorija = new System.Windows.Forms.Label();
-            this.lstZabrana = new System.Windows.Forms.ListBox();
             this.btnDodajZabranu = new System.Windows.Forms.Button();
             this.btnObrisiZabranu = new System.Windows.Forms.Button();
+            this.btnDodajVozaca = new System.Windows.Forms.Button();
+            this.btnZatvori = new System.Windows.Forms.Button();
+            this.datPolozeneKategorije = new System.Windows.Forms.DataGridView();
+            this.datZabrane = new System.Windows.Forms.DataGridView();
+            this.cmbPol = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.picSlika)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datPolozeneKategorije)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datZabrane)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -126,6 +130,7 @@
             this.txtIme.Name = "txtIme";
             this.txtIme.Size = new System.Drawing.Size(100, 23);
             this.txtIme.TabIndex = 7;
+            this.txtIme.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIme_KeyPress);
             // 
             // txtPrezime
             // 
@@ -133,6 +138,7 @@
             this.txtPrezime.Name = "txtPrezime";
             this.txtPrezime.Size = new System.Drawing.Size(100, 23);
             this.txtPrezime.TabIndex = 8;
+            this.txtPrezime.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrezime_KeyPress);
             // 
             // Pol
             // 
@@ -184,18 +190,6 @@
             this.txtMesto.Size = new System.Drawing.Size(100, 23);
             this.txtMesto.TabIndex = 13;
             // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 15;
-            this.listBox1.Items.AddRange(new object[] {
-            "M",
-            "Z"});
-            this.listBox1.Location = new System.Drawing.Point(131, 208);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(100, 19);
-            this.listBox1.TabIndex = 14;
-            // 
             // btnDodajSliku
             // 
             this.btnDodajSliku.Location = new System.Drawing.Point(328, 204);
@@ -212,15 +206,6 @@
             this.picSlika.Size = new System.Drawing.Size(180, 180);
             this.picSlika.TabIndex = 16;
             this.picSlika.TabStop = false;
-            // 
-            // lstKategorija
-            // 
-            this.lstKategorija.FormattingEnabled = true;
-            this.lstKategorija.ItemHeight = 15;
-            this.lstKategorija.Location = new System.Drawing.Point(131, 299);
-            this.lstKategorija.Name = "lstKategorija";
-            this.lstKategorija.Size = new System.Drawing.Size(326, 94);
-            this.lstKategorija.TabIndex = 17;
             // 
             // label8
             // 
@@ -239,6 +224,7 @@
             this.btnDodajKategoriju.TabIndex = 19;
             this.btnDodajKategoriju.Text = "Dodaj novu kategoriju";
             this.btnDodajKategoriju.UseVisualStyleBackColor = true;
+            this.btnDodajKategoriju.Click += new System.EventHandler(this.btnDodajKategoriju_Click);
             // 
             // btnObrisiKategoriju
             // 
@@ -252,20 +238,11 @@
             // Kategorija
             // 
             this.Kategorija.AutoSize = true;
-            this.Kategorija.Location = new System.Drawing.Point(131, 463);
+            this.Kategorija.Location = new System.Drawing.Point(131, 455);
             this.Kategorija.Name = "Kategorija";
             this.Kategorija.Size = new System.Drawing.Size(112, 15);
             this.Kategorija.TabIndex = 21;
             this.Kategorija.Text = "Zabrana Upravljanja";
-            // 
-            // lstZabrana
-            // 
-            this.lstZabrana.FormattingEnabled = true;
-            this.lstZabrana.ItemHeight = 15;
-            this.lstZabrana.Location = new System.Drawing.Point(131, 497);
-            this.lstZabrana.Name = "lstZabrana";
-            this.lstZabrana.Size = new System.Drawing.Size(326, 94);
-            this.lstZabrana.TabIndex = 22;
             // 
             // btnDodajZabranu
             // 
@@ -275,6 +252,7 @@
             this.btnDodajZabranu.TabIndex = 23;
             this.btnDodajZabranu.Text = "Dodaj novu zabranu";
             this.btnDodajZabranu.UseVisualStyleBackColor = true;
+            this.btnDodajZabranu.Click += new System.EventHandler(this.btnDodajZabranu_Click);
             // 
             // btnObrisiZabranu
             // 
@@ -285,22 +263,73 @@
             this.btnObrisiZabranu.Text = "Obrisi zabranu";
             this.btnObrisiZabranu.UseVisualStyleBackColor = true;
             // 
+            // btnDodajVozaca
+            // 
+            this.btnDodajVozaca.Location = new System.Drawing.Point(131, 639);
+            this.btnDodajVozaca.Name = "btnDodajVozaca";
+            this.btnDodajVozaca.Size = new System.Drawing.Size(75, 23);
+            this.btnDodajVozaca.TabIndex = 25;
+            this.btnDodajVozaca.Text = "Prosledi";
+            this.btnDodajVozaca.UseVisualStyleBackColor = true;
+            this.btnDodajVozaca.Click += new System.EventHandler(this.btnDodajVozaca_Click);
+            // 
+            // btnZatvori
+            // 
+            this.btnZatvori.Location = new System.Drawing.Point(382, 639);
+            this.btnZatvori.Name = "btnZatvori";
+            this.btnZatvori.Size = new System.Drawing.Size(75, 23);
+            this.btnZatvori.TabIndex = 26;
+            this.btnZatvori.Text = "Zatvori";
+            this.btnZatvori.UseVisualStyleBackColor = true;
+            this.btnZatvori.Click += new System.EventHandler(this.btnZatvori_Click);
+            // 
+            // datPolozeneKategorije
+            // 
+            this.datPolozeneKategorije.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.datPolozeneKategorije.Location = new System.Drawing.Point(131, 275);
+            this.datPolozeneKategorije.Name = "datPolozeneKategorije";
+            this.datPolozeneKategorije.RowTemplate.Height = 25;
+            this.datPolozeneKategorije.Size = new System.Drawing.Size(326, 117);
+            this.datPolozeneKategorije.TabIndex = 27;
+            // 
+            // datZabrane
+            // 
+            this.datZabrane.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.datZabrane.Location = new System.Drawing.Point(131, 473);
+            this.datZabrane.Name = "datZabrane";
+            this.datZabrane.RowTemplate.Height = 25;
+            this.datZabrane.Size = new System.Drawing.Size(326, 118);
+            this.datZabrane.TabIndex = 28;
+            // 
+            // cmbPol
+            // 
+            this.cmbPol.FormattingEnabled = true;
+            this.cmbPol.Items.AddRange(new object[] {
+            "M",
+            "Z"});
+            this.cmbPol.Location = new System.Drawing.Point(131, 208);
+            this.cmbPol.Name = "cmbPol";
+            this.cmbPol.Size = new System.Drawing.Size(100, 23);
+            this.cmbPol.TabIndex = 29;
+            // 
             // VozacForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(524, 801);
+            this.Controls.Add(this.cmbPol);
+            this.Controls.Add(this.datZabrane);
+            this.Controls.Add(this.datPolozeneKategorije);
+            this.Controls.Add(this.btnZatvori);
+            this.Controls.Add(this.btnDodajVozaca);
             this.Controls.Add(this.btnObrisiZabranu);
             this.Controls.Add(this.btnDodajZabranu);
-            this.Controls.Add(this.lstZabrana);
             this.Controls.Add(this.Kategorija);
             this.Controls.Add(this.btnObrisiKategoriju);
             this.Controls.Add(this.btnDodajKategoriju);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.lstKategorija);
             this.Controls.Add(this.picSlika);
             this.Controls.Add(this.btnDodajSliku);
-            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.txtMesto);
             this.Controls.Add(this.txtBrVozacke);
             this.Controls.Add(this.dtpVazenjeDo);
@@ -319,6 +348,8 @@
             this.Name = "VozacForm";
             this.Text = "VozacForm";
             ((System.ComponentModel.ISupportInitialize)(this.picSlika)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datPolozeneKategorije)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datZabrane)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -341,16 +372,18 @@
         private DateTimePicker dtpVazenjeDo;
         private TextBox txtBrVozacke;
         private TextBox txtMesto;
-        private ListBox listBox1;
         private Button btnDodajSliku;
         private PictureBox picSlika;
-        private ListBox lstKategorija;
         private Label label8;
         private Button btnDodajKategoriju;
         private Button btnObrisiKategoriju;
         private Label Kategorija;
-        private ListBox lstZabrana;
         private Button btnDodajZabranu;
         private Button btnObrisiZabranu;
+        private Button btnDodajVozaca;
+        private Button btnZatvori;
+        private DataGridView datPolozeneKategorije;
+        private DataGridView datZabrane;
+        private ComboBox cmbPol;
     }
 }
